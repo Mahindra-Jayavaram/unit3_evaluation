@@ -1,36 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search</title>
 
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
+    <style>
+        body {
+            background-color: whitesmoke;
+        }
+        #main > div {
+            width: 80%;
+            height: 250px;
+            margin: auto;
+            margin-bottom: 10px ;
+        }
+        #card {
+            display:grid;
+            grid-template-columns: repeat(3,30%);
+            grid-gap: 2%;
+            border-bottom: 1px solid grey;
+            margin-bottom: 10px;
+            background-color: white;
+        }
+        #card >div > img {
+            width: 98%;
+            height: 98%;
+        }
+    </style>
+</head>
+<body>
+    <h2>Search_Page</h2>
 
-  <body>
-    <div id="main">
-      <!--No need to add sidebar here, directly display search results-->
+    <div id="nav"></div>
 
-      <!-- show headline, description and image -->
+    <input type="text" id="search" placeholder="Search A News">
 
-
-
-      <!-- Wrong -> <a href="/Users/jonny/Desktop/misc/jugnu-tester/template-U3C4/Template-U3C4/news.html"></a> -->
-     <a href="/news.html"></a>
-
-
-    </div>
-  </body>
-
+    <button id="submit" onclick="getNews()">Search</button>
+    <div id = "container"></div>
+    <div id="main"></div>
+    
+</body>
 </html>
-<script type = "module">
 
-  import sidebar from "/components/sidebar.js"
-  let container = document.getElementById("container")
+<script type>
+
+  //   let main = document.getElementById('main');
+    
+    
+  // import sidebar from "/components/sidebar.js"
+  // let container = document.getElementById("container")
   
   container.innerHTML = sidebar();
-  
-  // my api = 265cf5f60040a93090aca6fecd02a9d9
-  
-  </script>
+    async function getNews() {
+
+        main.innerHTML = ''
+        let input = document.getElementById('search').value;
+
+        let API = 'aabac7e542674589974ce21515492a69'
+        let url = `https://newsapi.org/v2/everything?q=${input}&apiKey=${API}`
+
+        let res = await fetch(url)
+        const data = await res.json();
+        const news = data.articles;
+        console.log(news)
+        displayNews(news)
+
+    }
+
+    function displayNews(data) {
+
+        data.forEach(item => {
+
+            let div = document.createElement('div')
+            div.setAttribute('id', 'card')
+
+            let img = document.createElement('img')
+            img.src = item.urlToImage
+
+            let imgDiv = document.createElement('div')
+            imgDiv.append(img)
+
+            let title = document.createElement('h4')
+            title.textContent = item.title;
+
+            let titleDiv = document.createElement('div')
+            titleDiv.append(title)
+
+
+            let disc = document.createElement('p')
+            disc.textContent = item.content
+
+            let discDiv = document.createElement('div')
+            discDiv.append(disc)
+
+            div.append(titleDiv, discDiv, imgDiv)
+
+            main.append(div)
+    
+        });
+
+    }
+
+
+</script>
