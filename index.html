@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+  </head>
+  <link rel="stylesheet" href="/styles/main.css">
+
+  <body>
+    <div id="container">
+    <!-- appendArticles(res,main_div) -->
+    
+  </div>
+  <div id = main></div>
+  </body>
+
+</html>
+
+<script type = "module">
+
+  import sidebar from "/components/sidebar.js"
+  let container = document.getElementById("container")
+  
+  container.innerHTML = sidebar();
+  
+  import { apiCall, appendArticles } from "/scripts/main.js"
+  // console.log(apiCall, appendArticles)
+  
+  let main_div = document.getElementById("main")
+ 
+  let response = apiCall("https://gnews.io/api/v4/search?q=example&token=f9c426fd52aeaee9e01b3c73d545d278")
+
+  response.then((res)=>{
+    // console.log("res:",res)
+    appendArticles(res,main_div)
+
+})
+.catch((err)=>{
+  console.log("err:",err)
+})
+
+// my api = f9c426fd52aeaee9e01b3c73d545d278
+
+
+
+</script>
