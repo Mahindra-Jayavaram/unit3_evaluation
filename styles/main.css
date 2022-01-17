@@ -1,0 +1,14 @@
+
+  /* <style> */
+  #sidebar{
+    width: 16%;
+    height: 650px;
+    border: 1px solid black;
+  }
+  .names{
+    border: 1px solid black;
+    margin: 5px 0px;
+    height: 30px;
+    font-size: 20px;
+  }
+/* </style> */
