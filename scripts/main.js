@@ -22,21 +22,21 @@ function appendArticles(articles, main) {
 console.log(articles)
 console.log(main)
     //add append logic here
-    articles.forEach(({ title, image, description }) => {
+    articles.forEach((e) => {
 
         console.log(title, image, description)
         let div = document.createElement("div")
         // div.id = "img";
 
         let p= document.createElement("p")
-        p.textContent = title
+        p.textContent = e.title
         // console.log()
 
         let img = document.createElement("img");
-        img.src = image
+        img.src =e.image
 
         let des = document.createElement("p")
-        des.textContent = description;
+        des.textContent = e.description;
 
         div.append(p, des, img);
         main.append(div)
