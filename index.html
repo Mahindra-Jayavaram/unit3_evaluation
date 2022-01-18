@@ -49,11 +49,12 @@ async function getData()
   try{
     let res = await fetch("https://gnews.io/api/v4/search?q=example&token=615b05617863562d14a1ea401f0a3294")
     console.log(res)
-    let data = await res.json();
-    console.log(data)
+    var data = await res.json();
+    // console.log(data)
     let news = data.articles;
   
     console.log(news)
+    displayData(news)
 
   }
   catch(err)
@@ -63,9 +64,9 @@ async function getData()
 }
 getData()
 
-function displayData()
+function displayData(data)
 {
-  data.forEach(ele => {
+  data.forEach((ele) => {
     
     let div = document.createElement("div")
     div.id = "content"
@@ -96,21 +97,14 @@ let clickedNews = {
   time : ele.publishedAt,
 }
 
-// div.onclick = () => {
-//   viewNews(clickedNews)
-// }
+
 
   div.append(titleDiv, disDiv, imgDiv)
   main.append(div)
   });
 }
 
-// function onsearch()
-// {
-//   // let search = document.getElementById("searchbar").value;
-//   // search = addEventListener(onsearch())
-//   window.open("search.html")
-// }
+
 // my api = f9c426fd52aeaee9e01b3c73d545d278
 
 
