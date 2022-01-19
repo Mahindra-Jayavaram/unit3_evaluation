@@ -12,9 +12,9 @@
   <body>
     <div id="container">
     <!-- appendArticles(res,main_div) -->
+  <div id = main></div>
     
   </div>
-  <div id = main></div>
   </body>
 
 </html>
@@ -26,83 +26,83 @@
   
   container.innerHTML = sidebar();
   
-  // import { apiCall, appendArticles } from "/scripts/main.js"
-  // console.log(apiCall, appendArticles)
+  import { apiCall, appendArticles } from "./scripts/main.js"
+  console.log(apiCall, appendArticles)
   
   let main_div = document.getElementById("main")
  
-//   let response = apiCall("https://gnews.io/api/v4/search?q=example&token=615b05617863562d14a1ea401f0a3294")
+  let response = apiCall("https://gnews.io/api/v4/search?q=example&token=468d7bf3988b13640935473c33f68d39")
 
-//   response.then((res)=>{
-//     console.log("res:",res)
-//     appendArticles(res,main_div)
+  .then((res)=>{
+    console.log("res:",res)
+    appendArticles(res.articles,main_div)
 
-// })
-// .catch((err)=>{
-//   console.log("err:",err)
-// })
+})
+.catch((err)=>{
+  console.log("err:",err)
+})
 
 // let main_div = document.getElementById("main")
 
-async function getData()
-{
-  try{
-    let res = await fetch("https://gnews.io/api/v4/search?q=example&token=615b05617863562d14a1ea401f0a3294")
-    console.log(res)
-    var data = await res.json();
-    // console.log(data)
-    let news = data.articles;
+// async function getData()
+// {
+//   try{
+//     let res = await fetch("https://gnews.io/api/v4/search?q=example&token=615b05617863562d14a1ea401f0a3294")
+//     console.log(res)
+//     var data = await res.json();
+//     // console.log(data)
+//     let news = data.articles;
   
-    console.log(news)
-    displayData(news)
+//     console.log(news)
+//     displayData(news)
 
-  }
-  catch(err)
-  {
-    console.log(err)
-  }
-}
-getData()
+//   }
+//   catch(err)
+//   {
+//     console.log(err)
+//   }
+// }
+// getData()
 
-function displayData(data)
-{
-  data.forEach((ele) => {
+// function displayData(data)
+// {
+//   data.forEach((ele) => {
     
-    let div = document.createElement("div")
-    div.id = "content"
+//     let div = document.createElement("div")
+//     div.id = "content"
 
-    let img = document.createElement("img")
-    img.src = ele.urlToImage
+//     let img = document.createElement("img")
+//     img.src = ele.urlToImage
 
-    let imgDiv = document.createElement("div")
-    imgDiv.append(img)
+//     let imgDiv = document.createElement("div")
+//     imgDiv.append(img)
 
-    let title = document.createElement("p")
-    title.textContent = ele.title
+//     let title = document.createElement("p")
+//     title.textContent = ele.title
 
-    let titleDiv = document.createElement("div")
-    titleDiv.append(title)
+//     let titleDiv = document.createElement("div")
+//     titleDiv.append(title)
 
-    let des = document.createElement("p")
-    des.textContent = ele.content
+//     let des = document.createElement("p")
+//     des.textContent = ele.content
     
-    let disDiv = document.createElement("div")
-    disDiv.appenf(des)
+//     let disDiv = document.createElement("div")
+//     disDiv.append(des)
 
-let clickedNews = {
-  author : ele.author,
-  item : ele.title,
-  dis : ele.content,
-  img : ele.urlToImage,
-  time : ele.publishedAt,
-}
+// let clickedNews = {
+//   author : ele.author,
+//   item : ele.title,
+//   dis : ele.content,
+//   img : ele.urlToImage,
+//   time : ele.publishedAt,
+// }
 
 
 
-  div.append(titleDiv, disDiv, imgDiv)
-  main.append(div)
-  });
-}
+//   div.append(titleDiv, disDiv, imgDiv)
+//   main_div.append(div)
+//   });
+// }
 
 
 // my api = f9c426fd52aeaee9e01b3c73d545d278
