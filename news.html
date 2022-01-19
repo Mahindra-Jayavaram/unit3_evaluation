@@ -7,6 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
+    <style>
+      #container{
+        display: flex;
+      }
+        #main{
+          border: 1px solid black;
+          /* display: flex; */
+  }
+    </style>
 
   <body>
     <!--DO NOT CHANGE THIS ID's-->
@@ -37,24 +46,30 @@
 
   let main_div = document.getElementById("main")
   import sidebar from "/components/sidebar.js"
-  let container = document.getElementById("container")
+  let container = document.getElementById("sidebar")
   
   container.innerHTML = sidebar();
   
-  import { apiCall, appendArticles } from "/scripts/main.js"
-  // console.log(apiCall, appendArticles)
-  
-  let response = apiCall("https://gnews.io/api/v4/search?q=example&token=265cf5f60040a93090aca6fecd02a9d9")
-  // console.log("response:", response)
-  response.then((res)=>{
-    console.log("res:",res)
-    // appendArticles(main_div)
-    appendArticles(res, main_div)
-  
-  })
-  .catch((err)=>{
-    console.log("err:",err)
-  })
+  function clicked()
+  {
+     let clickedOne = JSON.parse(localStorage.getItem("clicked_item"))
+     console.log(clickedOne)
+
+
+
+    let headline = document.getElementById("headline")
+    headline.textContent = clickedOne.content
+    let image = document.getElementById("img")
+    image.src=clickedOne.image
+    let content =document.getElementById("content")
+    content.textContent= clickedOne.description
+
+    
+
+
+
+  }
+  clicked()
   
   // my api = 265cf5f60040a93090aca6fecd02a9d9
   
